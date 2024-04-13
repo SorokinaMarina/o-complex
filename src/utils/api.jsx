@@ -44,9 +44,24 @@ export async function getProducts() {
 export async function makeOrder(product) {
   return new Promise((resolve, reject) => {
     $.ajax({
-      url: `${BASE_URL}products?page=1&page_size=20`,
+      url: `${BASE_URL}order`,
       type: 'POST',
-      data: product,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      data: JSON.stringify({
+        phone: '79163452487',
+        cart: [
+          {
+            id: 12,
+            quantity: 2,
+          },
+          {
+            id: 15,
+            quantity: 5,
+          },
+        ],
+      }),
       success: function (data) {
         if (!data) {
           console.error('Произошла ошибка при получении данных с сервера')
@@ -60,18 +75,4 @@ export async function makeOrder(product) {
       },
     })
   })
-  // try {
-  //   const res = await fetch(`${BASE_URL}order`, {
-  //     method: 'POST',
-  //     body: JSON.stringify(product),
-  //   })
-  //   const data = await res.json()
-  //   if (!data) {
-  //     throw new Error('Произошла ошибка при отправке данных на сервер')
-  //   }
-  //   return data
-  // } catch (e) {
-  //   console.log(e)
-  //   return `Произошла ошибка при загрузке данных ${e}`
-  // }
 }

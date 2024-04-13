@@ -1,14 +1,9 @@
+@import '../../utils/_vars';
+
 .button {
   width: 100%;
-  background-color: #222;
-  color: #f0f0f0;
-  border-radius: 15px;
-  text-align: center;
-  padding: 11px 0 13px;
-  font-size: 36px;
-  line-height: 1.22;
-  border: none;
   cursor: pointer;
+  @extend %button-style;
 
   &:hover {
     opacity: 0.6;

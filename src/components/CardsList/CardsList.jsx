@@ -3,7 +3,7 @@ import useSWR from 'swr'
 import { getProducts } from '@/utils/api'
 import Card from '../Card/Card'
 
-export default function () {
+export default function ({ setProduct, product }) {
   const { data, isLoading, error } = useSWR('products', () => getProducts())
 
   // Добавляем разметку для загрузки страницы
@@ -22,7 +22,12 @@ export default function () {
   return (
     <section className="cards-list">
       {data.products.map(item => (
-        <Card key={item.id} {...item} />
+        <Card
+          key={item.id}
+          {...item}
+          setProduct={setProduct}
+          product={product}
+        />
       ))}
     </section>
   )

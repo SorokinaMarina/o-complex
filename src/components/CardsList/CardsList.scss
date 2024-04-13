@@ -1,0 +1,33 @@
+@import '../../utils//_vars';
+
+.cards-list {
+  max-width: 987px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 301px);
+  grid-auto-rows: auto-fit;
+  gap: 35px 42px;
+  min-height: 812px;
+
+  &__loading {
+    @extend %style-loading;
+  }
+
+  &__error {
+    @extend %style-loading;
+  }
+}
+
+@media screen and (max-width: 1150px) {
+  .cards-list {
+    max-width: 637px;
+    grid-template-columns: repeat(2, 301px);
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .cards-list {
+    width: 92%;
+    grid-template-columns: repeat(1, minmax(301px, 1fr));
+  }
+}

@@ -1,0 +1,28 @@
+.main {
+  width: 75%;
+  margin: 55px auto 388px;
+
+  &__title {
+    width: 100%;
+    background-color: #777;
+    text-align: center;
+    color: #f0f0f0;
+    font-weight: 400;
+    line-height: 1.2;
+    font-size: 96px;
+    border-radius: 15px;
+    margin: 0 0 89px 0;
+    padding: 0 0 16px 0;
+  }
+}
+
+@media screen and (max-width: 1150px) {
+  .main {
+    width: 92%;
+    &__title {
+      font-size: 40px;
+      padding: 6px 0;
+      margin: 0 0 81px 0;
+    }
+  }
+}

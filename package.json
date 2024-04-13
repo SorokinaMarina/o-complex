@@ -13,13 +13,18 @@
     "commit": "cz"
   },
   "dependencies": {
+    "ajax": "^0.0.4",
     "commitizen": "^4.3.0",
     "cz-conventional-changelog": "^3.3.0",
     "husky": "^9.0.11",
+    "jquery": "^3.7.1",
     "lint-staged": "^15.2.2",
     "next": "14.1.4",
+    "node-sass": "^9.0.0",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "sass": "^1.74.1",
+    "swr": "^2.2.5"
   },
   "eslintConfig": {
     "extends": [

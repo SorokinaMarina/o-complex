@@ -28,6 +28,7 @@
 * JavaScript (стандарт ES6)
 * React
 * Next.js
+* Ajax
 * REST API
 * Git
 * Адаптивная вёрстка

@@ -42,7 +42,6 @@ export async function getProducts() {
 }
 
 export async function makeOrder(product) {
-  console.log(product)
   return new Promise((resolve, reject) => {
     $.ajax({
       url: `${BASE_URL}order`,

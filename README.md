@@ -29,8 +29,7 @@
 * HTML5
 * SCSS
 * JavaScript (стандарт ES6)
-* React
-* Next.js
+* React (Next.js)
 * Ajax
 * REST API
 * Git

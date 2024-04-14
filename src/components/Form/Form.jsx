@@ -6,11 +6,13 @@ import { IMaskInput } from 'react-imask'
 import { SetProductContext } from '@/utils/contexts/SetProductContext'
 import useSWRMutation from 'swr/mutation'
 import { makeOrder } from '@/utils/api'
+import { SetBasketContext } from '@/utils/contexts/SetBasketContext'
 
-export default function Form({ product }) {
+export default function Form({ product, setOpenPopup }) {
   // Переменные с контекстом
   const basket = useContext(BasketContext)
   const setProduct = useContext(SetProductContext)
+  const setBusket = useContext(SetBasketContext)
 
   // Переменная с шаблоном маски
   const maskTemplate = '+{7}(000)000-00-00'
@@ -66,10 +68,12 @@ export default function Form({ product }) {
       setIsValid(null)
       setErrorText('')
       setValues('')
+      setBusket([])
       setProduct({
         phone: '',
         cart: [],
       })
+      setOpenPopup(true)
     } catch (e) {
       console.log(`Ошибка: ${e}`)
     }

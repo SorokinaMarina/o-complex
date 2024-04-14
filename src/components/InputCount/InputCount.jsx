@@ -6,13 +6,13 @@ import { SetProductContext } from '@/utils/contexts/SetProductContext'
 import { SetBasketContext } from '@/utils/contexts/SetBasketContext'
 import { BasketContext } from '@/utils/contexts/BasketContext'
 
-export default function InputCount({ id, setCountActive }) {
+export default function InputCount({ id }) {
   const product = useContext(ProductContext)
   const setProduct = useContext(SetProductContext)
   const setBasket = useContext(SetBasketContext)
   const basket = useContext(BasketContext)
-  const productObject = product.cart.find(item => item.id === id)
-  console.log(product)
+  const productObject =
+    product.cart.length !== 0 && product.cart.find(item => item.id === id)
   // Функция, которая собирается данные из полей с количеством товаров
   function onChange(e) {
     const { id, value } = e.target
@@ -67,13 +67,7 @@ export default function InputCount({ id, setCountActive }) {
       return item
     })
 
-    const filterProducts = updatedProduct.filter(item => {
-      if (item.id === +id && item.quantity < 1) {
-        setCountActive(false)
-      }
-
-      return item.quantity > 0
-    })
+    const filterProducts = updatedProduct.filter(item => item.quantity > 0)
 
     const filterBasket = updatedBasket.filter(item => item.quantity > 0)
 
@@ -97,13 +91,7 @@ export default function InputCount({ id, setCountActive }) {
 
   // Перезаписываем product при расфокусе с поля ввода
   function onBlur() {
-    const filterProducts = product.cart.filter(item => {
-      if (item.id === +id && item.quantity < 1) {
-        setCountActive(false)
-      }
-
-      return item.quantity > 0
-    })
+    const filterProducts = product.cart.filter(item => item.quantity > 0)
 
     const filterBasket = basket.filter(item => item.quantity > 0)
 

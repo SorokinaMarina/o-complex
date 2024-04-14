@@ -8,6 +8,7 @@ import { ProductContext } from '@/utils/contexts/productContext'
 import { SetProductContext } from '@/utils/contexts/SetProductContext'
 import { BasketContext } from '@/utils/contexts/BasketContext'
 import { SetBasketContext } from '@/utils/contexts/SetBasketContext'
+import PopupContainer from '../PopupContainer/PopupContainer'
 
 export default function Main() {
   const [product, setProduct] = useState({
@@ -15,9 +16,8 @@ export default function Main() {
     cart: [],
   })
 
-  console.log(product)
-
   const [basket, setBasket] = useState([])
+  const [openPopup, setOpenPopup] = useState(false)
 
   return (
     <main className="main">
@@ -27,8 +27,12 @@ export default function Main() {
             <SetBasketContext.Provider value={setBasket}>
               <h1 className="main__title">тестовое задание</h1>
               <Feedback />
-              <Form product={product} />
+              <Form product={product} setOpenPopup={setOpenPopup} />
               <CardsList />
+              <PopupContainer
+                openPopup={openPopup}
+                setOpenPopup={setOpenPopup}
+              />
             </SetBasketContext.Provider>
           </BasketContext.Provider>
         </SetProductContext.Provider>

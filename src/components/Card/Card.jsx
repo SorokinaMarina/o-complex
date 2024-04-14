@@ -1,12 +1,17 @@
 'use client'
 import './Card.scss'
-import { useState } from 'react'
 import Image from 'next/image'
 import ButtonBuy from '../ButtonBuy/ButtonBuy'
 import InputCount from '../InputCount/InputCount'
+import { BasketContext } from '@/utils/contexts/BasketContext'
+import { useContext } from 'react'
 
 export default function Card({ image_url, title, description, price, id }) {
-  const [countActive, setCountActive] = useState(false)
+  const basket = useContext(BasketContext)
+
+  // Находим объект с нужным id в массиве basket
+  const itemInBasket = basket.find(item => item.id === id)
+  const countActive = itemInBasket ? itemInBasket.countActive : false
 
   return (
     <div className="card">
@@ -25,14 +30,9 @@ export default function Card({ image_url, title, description, price, id }) {
         <div className="card__container-buy">
           <p className="card__price"> Цена: {price}₽</p>
           {!countActive ? (
-            <ButtonBuy
-              title={title}
-              price={price}
-              id={id}
-              setCountActive={setCountActive}
-            />
+            <ButtonBuy title={title} price={price} id={id} />
           ) : (
-            <InputCount id={id} setCountActive={setCountActive} />
+            <InputCount id={id} />
           )}
         </div>
       </div>

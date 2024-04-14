@@ -1,36 +1,55 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Тестовое задание для компании О-комплекс
 
-## Getting Started
+## Требования
+✔️ визуал по фигме [https://www.figma.com/file/XIYVl8ICFkdl3HJZcc8o8B/тестовое?type=design&node-id=0%3A1&mode=design&t=6xUI2e3VtlUzDocD-1](https://www.figma.com/file/XIYVl8ICFkdl3HJZcc8o8B/%D1%82%D0%B5%D1%81%D1%82%D0%BE%D0%B2%D0%BE%D0%B5?type=design&node-id=0%3A1&mode=design&t=6xUI2e3VtlUzDocD-1)
 
-First, run the development server:
+✔️ должен быть адаптирован под мобильные устройства и планшеты
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+✔️ наполнение контентом отзывов из html обернутого в json
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+* наполнение контентом товары по апи
+    - показывать первую страницу сразу
+    - остальные страницы подгружать ajax запросом, по мере прокрутки вниз
+✔️ при нажатии на кнопку "купить", она должна меняться на кнопки + и - и поле для ввода кол-ва товара, значение поля должно быть 1, кнопки должны добавлять отбавлять товар, так же должна быть возможность вписать в поле для ввода любое кол-во.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+✔️ при изменении кол-ва какого-либо из товаров должна меняться информация в корзине (та что над полем с телефоном)
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+* набранные товары и введенный номер телефона должны сохраняться при перезагрузки страницы
+  
+✔️ маска в поле для телефона
 
-## Learn More
+✔️ при нажатии кнопки "заказать" идет проверка того что телефон полностью введен
+    - если всё хорошо - отправлять запрос на сервер
+    - если есть ошибки - подсветить соответствующие поля красным (поле номера телефона)
+    
+✔️ после отправки запроса и получения ответа от сервера отобразить попап что всё успешно (сделать попап в стиле самого сайта)
 
-To learn more about Next.js, take a look at the following resources:
+## Технологии
+* HTML5
+* SCSS
+* JavaScript (стандарт ES6)
+* React
+* Next.js
+* REST API
+* Git
+* Адаптивная вёрстка
+* БЭМ
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Установка и запуск проекта локально
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+* Клонировать репозиторий
+  
+  `git clone git@github.com:SorokinaMarina/o-complex.git`
 
-## Deploy on Vercel
+* Перейти в папку "o-complex"
+  
+  `cd o-complex`
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+* Установить зависимости
+  
+  `npm i`
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+* Запустить 
+  
+  `npm run dev`
+

@@ -13,6 +13,7 @@ export default function InputCount({ id }) {
   const basket = useContext(BasketContext)
   const productObject =
     product.cart.length !== 0 && product.cart.find(item => item.id === id)
+
   // Функция, которая собирается данные из полей с количеством товаров
   function onChange(e) {
     const { id, value } = e.target

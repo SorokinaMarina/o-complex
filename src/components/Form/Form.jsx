@@ -18,7 +18,7 @@ export default function Form({ product, setOpenPopup }) {
   const maskTemplate = '+{7}(000)000-00-00'
 
   // В переменную values записываем данные из поля ввода
-  const [values, setValues] = useState()
+  const [values, setValues] = useState('')
   // Переменная хранит булевое значение об успешной/не успешной валидации
   const [isValid, setIsValid] = useState(null)
   // Переменная хранит в себе текст ошибки
@@ -90,8 +90,10 @@ export default function Form({ product, setOpenPopup }) {
                 <td className="form__table-data form__table-data_invisible-ending">
                   {item.title}
                 </td>
-                <td className="form__table-data">{`x${item.quantity}`}</td>
-                <td className="form__table-data">{`${+item.price * item.quantity}`}</td>
+                <td className="form__table-data">x{item.quantity}</td>
+                <td className="form__table-data">
+                  {item.price * item.quantity}
+                </td>
               </tr>
             ))}
           </tbody>

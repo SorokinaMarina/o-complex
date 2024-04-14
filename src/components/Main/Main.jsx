@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './Main.scss'
 import Feedback from '../Feedback/Feedback'
 import Form from '../Form/Form'
@@ -18,6 +18,10 @@ export default function Main() {
 
   const [basket, setBasket] = useState([])
   const [openPopup, setOpenPopup] = useState(false)
+
+  useEffect(() => {
+    localStorage.setItem('product', JSON.stringify(product))
+  }, [product])
 
   return (
     <main className="main">

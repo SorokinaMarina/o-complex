@@ -1,14 +1,32 @@
 'use client'
 import './InputCount.scss'
-import { useState } from 'react'
+import { useContext } from 'react'
+import { ProductContext } from '@/utils/contexts/productContext'
+import { SetProductContext } from '@/utils/contexts/SetProductContext'
+import { SetBasketContext } from '@/utils/contexts/SetBasketContext'
+import { BasketContext } from '@/utils/contexts/BasketContext'
 
-export default function InputCount({ id, product, setProduct }) {
+export default function InputCount({ id, setCountActive }) {
+  const product = useContext(ProductContext)
+  const setProduct = useContext(SetProductContext)
+  const setBasket = useContext(SetBasketContext)
+  const basket = useContext(BasketContext)
+  const productObject = product.cart.find(item => item.id === id)
+  // Функция, которая собирается данные из полей с количеством товаров
   function onChange(e) {
     const { id, value } = e.target
 
     const updatedProduct = product.cart.map(item => {
       if (item.id === +id) {
-        return { ...item, quantity: +value }
+        return { ...item, quantity: parseInt(value, 10) || 0 }
+      }
+
+      return item
+    })
+
+    const updatedBasket = basket.map(item => {
+      if (item.id === +id) {
+        return { ...item, quantity: parseInt(value, 10) || 0 }
       }
 
       return item
@@ -18,36 +36,82 @@ export default function InputCount({ id, product, setProduct }) {
       ...prevValues,
       cart: updatedProduct,
     }))
+
+    setBasket(updatedBasket)
   }
 
+  // Функция, которая увеличивает/уменьшает количество товаров на единицу
+  function updateQuantity(option) {
+    const updatedProduct = product.cart.map(item => {
+      if (item.id === +id) {
+        if (option === 'subtraction') {
+          return { ...item, quantity: +item.quantity - 1 }
+        } else if (option === 'addition') {
+          return { ...item, quantity: +item.quantity + 1 }
+        }
+      }
+
+      return item
+    })
+
+    const updatedBasket = basket.map(item => {
+      if (item.id === +id) {
+        if (option === 'subtraction') {
+          return { ...item, quantity: +item.quantity - 1 }
+        } else if (option === 'addition') {
+          return { ...item, quantity: +item.quantity + 1 }
+        }
+      }
+
+      return item
+    })
+
+    const filterProducts = updatedProduct.filter(item => {
+      if (item.id === +id && item.quantity < 1) {
+        setCountActive(false)
+      }
+
+      return item.quantity > 0
+    })
+
+    const filterBasket = updatedBasket.filter(item => item.quantity > 0)
+
+    setProduct(prevValues => ({
+      ...prevValues,
+      cart: filterProducts,
+    }))
+
+    setBasket(filterBasket)
+  }
+
+  // Функция срабатывает при клике на "-"
   function onClickSubtraction() {
-    const updatedProduct = product.cart.map(item => {
-      if (item.id === +id) {
-        return { ...item, quantity: +item.quantity - 1 }
-      }
-
-      return item
-    })
-
-    setProduct(prevValues => ({
-      ...prevValues,
-      cart: updatedProduct,
-    }))
+    updateQuantity('subtraction')
   }
 
+  // Функция срабатывает при клике на "+"
   function onClickAddition() {
-    const updatedProduct = product.cart.map(item => {
-      if (item.id === +id) {
-        return { ...item, quantity: +item.quantity + 1 }
+    updateQuantity('addition')
+  }
+
+  // Перезаписываем product при расфокусе с поля ввода
+  function onBlur() {
+    const filterProducts = product.cart.filter(item => {
+      if (item.id === +id && item.quantity < 1) {
+        setCountActive(false)
       }
 
-      return item
+      return item.quantity > 0
     })
+
+    const filterBasket = basket.filter(item => item.quantity > 0)
 
     setProduct(prevValues => ({
       ...prevValues,
-      cart: updatedProduct,
+      cart: filterProducts,
     }))
+
+    setBasket(filterBasket)
   }
 
   return (
@@ -64,11 +128,10 @@ export default function InputCount({ id, product, setProduct }) {
           className="input-count__field"
           id={id}
           type="number"
-          minLength={1}
-          max={6}
-          placeholder={product.cart[id - 1].quantity}
-          value={product.cart[id - 1].quantity}
+          placeholder={productObject.quantity}
+          value={productObject.quantity}
           onChange={onChange}
+          onBlur={onBlur}
           name="input"
         />
       </label>

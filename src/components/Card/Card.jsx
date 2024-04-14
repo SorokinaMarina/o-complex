@@ -5,16 +5,9 @@ import Image from 'next/image'
 import ButtonBuy from '../ButtonBuy/ButtonBuy'
 import InputCount from '../InputCount/InputCount'
 
-export default function Card({
-  image_url,
-  title,
-  description,
-  price,
-  id,
-  setProduct,
-  product,
-}) {
+export default function Card({ image_url, title, description, price, id }) {
   const [countActive, setCountActive] = useState(false)
+
   return (
     <div className="card">
       <div className="card__flex-container">
@@ -33,12 +26,13 @@ export default function Card({
           <p className="card__price"> Цена: {price}₽</p>
           {!countActive ? (
             <ButtonBuy
+              title={title}
+              price={price}
               id={id}
-              setProduct={setProduct}
               setCountActive={setCountActive}
             />
           ) : (
-            <InputCount id={id} product={product} setProduct={setProduct} />
+            <InputCount id={id} setCountActive={setCountActive} />
           )}
         </div>
       </div>

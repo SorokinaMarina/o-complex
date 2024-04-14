@@ -1,12 +1,97 @@
+@import '../../utils/_vars';
+
 .form {
-  width: 100%;
+  width: 708px;
+  margin: 0 auto 47px;
+  background-color: #d9d9d9;
+  border-radius: 15px;
+
   &__container {
-    width: 708px;
-    height: 230px;
-    margin: 0 auto 47px;
-    background-color: #d9d9d9;
+    width: 686px;
+    margin: 0 auto;
+    padding: 10px 0;
+  }
+
+  &__title {
+    font-size: 36px;
+    font-weight: 400;
+    line-height: 1.22;
+    margin: 0 0 11px;
+  }
+
+  &__table {
+    padding: 0 0 20px;
+  }
+
+  &__table-data {
+    max-width: 250px;
+    padding: 0 10px 10px 0;
+
+    &_invisible-ending {
+      white-space: nowrap; /* Запрет переноса текста */
+      overflow: hidden; /* Скрытие текста, который не помещается */
+      text-overflow: ellipsis; /* Замена непоместившегося текста на многоточие */
+    }
+  }
+
+  &__template {
+    display: flex;
+    justify-content: space-between;
+    column-gap: 17px;
+  }
+
+  &__fieldset {
+    width: 401px;
+    height: 68px;
+    border: none;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+
+  &__label {
+    width: 100%;
+    height: 100%;
+    display: block;
+    background-color: #222222;
     border-radius: 15px;
   }
+
+  &__input {
+    @extend %input-style;
+
+    text-align: left;
+    padding-left: 16px;
+
+    &::placeholder {
+      @extend %input-style;
+
+      text-align: left;
+      padding-left: 16px;
+    }
+  }
+
+  &__button {
+    width: 251px;
+    cursor: pointer;
+    @extend %button-style;
+
+    &:hover {
+      opacity: 0.6;
+    }
+  }
+}
+
+input[type='number']::-webkit-outer-spin-button,
+input[type='number']::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+input[type='number'],
+input[type='number']:hover,
+input[type='number']:focus {
+  appearance: none;
+  -moz-appearance: textfield;
 }
 
 @media screen and (max-width: 750px) {

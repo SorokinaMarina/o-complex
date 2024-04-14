@@ -22,12 +22,6 @@
   }
 
   &__field {
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    border: none;
-    border-radius: 15px;
-    background-color: #222;
     @extend %input-style;
 
     &::placeholder {

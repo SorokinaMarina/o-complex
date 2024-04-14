@@ -9,7 +9,7 @@
   &__container {
     width: 686px;
     margin: 0 auto;
-    padding: 10px 0;
+    padding: 10px 0 15px;
   }
 
   &__title {
@@ -20,14 +20,14 @@
   }
 
   &__table {
-    padding: 0 0 20px;
+    padding: 0;
   }
 
   &__table-data {
-    max-width: 250px;
     padding: 0 10px 10px 0;
 
     &_invisible-ending {
+      max-width: 250px;
       white-space: nowrap; /* Запрет переноса текста */
       overflow: hidden; /* Скрытие текста, который не помещается */
       text-overflow: ellipsis; /* Замена непоместившегося текста на многоточие */
@@ -55,6 +55,10 @@
     display: block;
     background-color: #222222;
     border-radius: 15px;
+
+    &_error {
+      border: 2px solid #ff4062;
+    }
   }
 
   &__input {
@@ -62,42 +66,75 @@
 
     text-align: left;
     padding-left: 16px;
+    box-sizing: border-box;
 
     &::placeholder {
       @extend %input-style;
 
       text-align: left;
-      padding-left: 16px;
     }
   }
 
   &__button {
-    width: 251px;
+    width: 268px;
     cursor: pointer;
     @extend %button-style;
+
+    &_error {
+      opacity: 0.6;
+      pointer-events: none;
+      color: #eee;
+    }
 
     &:hover {
       opacity: 0.6;
     }
   }
+
+  &__error-text {
+    width: 100%;
+    min-height: 20px;
+    display: block;
+    color: #ff4062;
+    font-size: 16px;
+    padding-bottom: 5px;
+  }
 }
 
-input[type='number']::-webkit-outer-spin-button,
-input[type='number']::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-}
-
-input[type='number'],
-input[type='number']:hover,
-input[type='number']:focus {
-  appearance: none;
-  -moz-appearance: textfield;
-}
-
-@media screen and (max-width: 750px) {
+@media screen and (max-width: 800px) {
   .form {
+    width: 100%;
+    margin: 0 0 45px;
+    gap: 9px;
+
     &__container {
-      width: 92%;
+      width: 93%;
+    }
+
+    &__template {
+      flex-direction: column;
+    }
+
+    &__fieldset {
+      width: 100%;
+      margin-bottom: 9px;
+    }
+
+    &__input {
+      height: 68px;
+      padding-left: 9px;
+    }
+
+    &__title {
+      text-align: center;
+    }
+
+    &__button {
+      width: 100%;
+    }
+
+    &__table-data_invisible-ending {
+      max-width: 176px;
     }
   }
 }

@@ -42,6 +42,7 @@ export async function getProducts() {
 }
 
 export async function makeOrder(product) {
+  console.log(product)
   return new Promise((resolve, reject) => {
     $.ajax({
       url: `${BASE_URL}order`,
@@ -49,19 +50,7 @@ export async function makeOrder(product) {
       headers: {
         'Content-Type': 'application/json',
       },
-      data: JSON.stringify({
-        phone: '79163452487',
-        cart: [
-          {
-            id: 12,
-            quantity: 2,
-          },
-          {
-            id: 15,
-            quantity: 5,
-          },
-        ],
-      }),
+      data: JSON.stringify(product),
       success: function (data) {
         if (!data) {
           console.error('Произошла ошибка при получении данных с сервера')

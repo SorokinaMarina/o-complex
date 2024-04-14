@@ -2,19 +2,20 @@
 
 .feedback {
   width: 100%;
-  display: flex;
-  justify-content: center;
-  column-gap: 34px;
-  flex-wrap: wrap;
   margin-bottom: 243px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: auto-fit;
+  column-gap: 34px;
 
   &__container {
-    width: 468px;
+    width: 89%;
+    margin: 0 auto;
     min-height: 611px;
     background-color: #d9d9d9;
     border-radius: 15px;
     padding: 20px 27px;
-    margin-top: 16px;
+    box-sizing: border-box;
   }
 
   &__loading {
@@ -26,10 +27,31 @@
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 1080px) {
   .feedback {
     &__container {
+      width: 85%;
+    }
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .feedback {
+    display: block;
+
+    &__container {
       width: 100%;
+      min-height: 493px;
+      margin-bottom: 22px;
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .feedback {
+    margin-bottom: 164px;
+
+    &__container {
       padding: 23px 20px;
     }
   }

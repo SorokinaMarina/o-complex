@@ -16,10 +16,12 @@ export default function ButtonBuy({ id, setCountActive, title, price }) {
       onClick={() => {
         if (!product.cart.forEach(item => item.id === id)) {
           setCountActive(true)
+
           setProduct(prevValues => ({
             ...prevValues,
             cart: [...prevValues.cart, { id, quantity: 1 }],
           }))
+
           setBasket(prevValues => [
             ...prevValues,
             { title, id, price, quantity: 1 },

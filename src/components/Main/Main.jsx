@@ -15,8 +15,9 @@ export default function Main() {
     cart: [],
   })
 
+  console.log(product)
+
   const [basket, setBasket] = useState([])
-  console.log(basket)
 
   return (
     <main className="main">
@@ -26,7 +27,7 @@ export default function Main() {
             <SetBasketContext.Provider value={setBasket}>
               <h1 className="main__title">тестовое задание</h1>
               <Feedback />
-              <Form />
+              <Form product={product} />
               <CardsList />
             </SetBasketContext.Provider>
           </BasketContext.Provider>

@@ -7,6 +7,7 @@ const nextConfig = {
       'encrypted-tbn3.gstatic.com',
     ],
   },
+  output: 'export',
 }
 
 export default nextConfig
